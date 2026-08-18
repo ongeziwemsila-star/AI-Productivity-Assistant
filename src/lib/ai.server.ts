@@ -16,18 +16,18 @@ function buildPrompt(tool: ToolKey, f: Record<string, string>): string {
     case "email":
       return [
         "Task: Draft a professional workplace email.",
-        `Recipient / audience: ${f.recipient || "[confirm]"}`,
-        `Purpose: ${f.purpose || "[confirm]"}`,
-        `Key points to cover: ${f.points || "[confirm]"}`,
-        `Tone: ${f.tone || "professional"}`,
-        `Desired length: ${f.length || "short"}`,
+        `Recipient / audience: ${f["recipient"] || "[confirm]"}`,
+        `Purpose: ${f["purpose"] || "[confirm]"}`,
+        `Key points to cover: ${f["points"] || "[confirm]"}`,
+        `Tone: ${f["tone"] || "professional"}`,
+        `Desired length: ${f["length"] || "short"}`,
         "",
         "Return: a subject line on the first line as **Subject:** ..., then the email body with a greeting, structured paragraphs and a sign-off.",
       ].join("\n");
     case "notes":
       return [
         "Task: Summarize the meeting notes / transcript below.",
-        `Meeting context: ${f.context || "not provided"}`,
+        `Meeting context: ${f["context"] || "not provided"}`,
         "",
         "Return these Markdown sections:",
         "## Summary (3-5 bullets)",
@@ -36,24 +36,24 @@ function buildPrompt(tool: ToolKey, f: Record<string, string>): string {
         "## Open Questions / Risks",
         "",
         "Notes:",
-        f.notes || "",
+        f["notes"] || "",
       ].join("\n");
     case "planner":
       return [
         "Task: Build an actionable task plan.",
-        `Goal / project: ${f.goal || "[confirm]"}`,
-        `Deadline: ${f.deadline || "not specified"}`,
-        `Time available: ${f.capacity || "not specified"}`,
-        `Constraints or context: ${f.constraints || "none"}`,
+        `Goal / project: ${f["goal"] || "[confirm]"}`,
+        `Deadline: ${f["deadline"] || "not specified"}`,
+        `Time available: ${f["capacity"] || "not specified"}`,
+        `Constraints or context: ${f["constraints"] || "none"}`,
         "",
         "Return: ## Plan Overview, then a Markdown table of tasks (Task | Priority | Estimate | Suggested day), then ## Sequencing Advice and ## Risks to Watch.",
       ].join("\n");
     case "research":
       return [
         "Task: Produce a structured research briefing from your general knowledge.",
-        `Topic / question: ${f.topic || "[confirm]"}`,
-        `Audience: ${f.audience || "internal team"}`,
-        `Depth: ${f.depth || "overview"}`,
+        `Topic / question: ${f["topic"] || "[confirm]"}`,
+        `Audience: ${f["audience"] || "internal team"}`,
+        `Depth: ${f["depth"] || "overview"}`,
         "",
         "Return: ## Executive Summary, ## Key Findings (bullets), ## Considerations & Trade-offs, ## Suggested Next Steps, ## Verify Before Using (what a human must fact-check).",
         "Do not fabricate statistics, sources or links.",
