@@ -36,7 +36,7 @@ export const NAV_ITEMS = [
   { to: "/chat", label: "Assistant Chat", icon: Bot, desc: "Ask anything, keep the context" },
 ] as const;
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <nav className="flex flex-col gap-1">
       {NAV_ITEMS.map((item) => (
@@ -58,7 +58,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col bg-sidebar p-4">
       <Link to="/" onClick={onNavigate} className="mb-8 flex items-center gap-2.5 px-1 py-1">
